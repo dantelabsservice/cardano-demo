@@ -2,10 +2,10 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@utils/*": ["utils/*"],
-      "@pages/*": ["components/pages/*"],
-      "@templates/*": ["components/templates/*"],
+      "components/*": ["components/*"],
+      "utils/*": ["utils/*"],
+      "pages/*": ["components/pages/*"],
+      "templates/*": ["components/templates/*"],
     },
     "target": "es5",
     "lib": [

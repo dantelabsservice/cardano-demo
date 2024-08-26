@@ -1,3 +1,5 @@
 /**
  * Pages
  */
+
+export * from "./HomePage"

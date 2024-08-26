@@ -1,9 +1,13 @@
-import React from 'react';
-import './App.css';
+import { ChakraProvider } from "@chakra-ui/react";
+import { HomePage } from "components/pages";
+import React from "react";
+import { theme } from "theme/theme";
 
 function App() {
   return (
-    <div>Ski Trip Manager</div>
+    <ChakraProvider theme={theme}>
+      <HomePage />
+    </ChakraProvider>
   );
 }
 
