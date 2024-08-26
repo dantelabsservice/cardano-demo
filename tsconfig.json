@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"],
+      "@pages/*": ["components/pages/*"],
+      "@templates/*": ["components/templates/*"],
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -19,7 +26,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
-  },
+  },    
   "include": [
     "src"
   ]
