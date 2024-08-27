@@ -7,6 +7,7 @@ import { ChakraProvider, CircularProgress, Flex } from "@chakra-ui/react";
 import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { HomeLayout } from "@/components/templates";
+import { PageLayout } from "@/components/templates/PageLayout";
 
 const Loading = () => (
   <Flex
@@ -28,7 +29,7 @@ const MyApp = ({ Component: Page, pageProps }: AppProps) => {
   const { isLoading } = useLoadingNavigation();
   const router = useRouter();
 
-  const Layout = HomeLayout;
+  const Layout = pageProps.template === "home" ? HomeLayout : PageLayout;
 
   const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_URL}${router.asPath}`;
 

@@ -1,13 +1,9 @@
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import React from "react";
 import { Header } from "./Header";
+import { BaseLayoutProps } from "../types/layout";
 
 const BG_IMAGE = "url('images/snowy-mountains.png')";
-
-interface BaseLayoutProps {
-  children?: React.ReactNode;
-  pageProps?: any;
-}
 
 export const PageMain: React.FC<BaseLayoutProps> = ({ children }) => (
   <Flex

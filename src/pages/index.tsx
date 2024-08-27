@@ -19,6 +19,7 @@ const Page: NextPage<PageProps> = ({}) => {
 export const getServerSideProps = async ({ req, res }: NextPageContext) => {
   return {
     props: {
+      template: "home",
       pageHeading: "Welcome to the Ski Trip Manager",
       seo: {
         title: "Homepage",
