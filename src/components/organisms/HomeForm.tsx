@@ -3,6 +3,7 @@ import React from "react";
 import { NumberInput, SelectInput } from "../molecules";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
 
 export enum FormFields {
   NumberOfPeople = "numberOfPeople",
@@ -22,6 +23,8 @@ const validationSchema = Yup.object({
 });
 
 const HomeForm = () => {
+  const router = useRouter();
+
   const {
     handleChange,
     values,
@@ -37,6 +40,7 @@ const HomeForm = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       console.log(values);
+      router.push("/results");
     },
   });
 

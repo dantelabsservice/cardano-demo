@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
@@ -5,7 +6,7 @@ type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 const Page: NextPage<PageProps> = ({}) => {
   return (
     <>
-      
+      <Heading as="h1" variant="page-heading">Ski trail results</Heading>
     </>
   );
 };
