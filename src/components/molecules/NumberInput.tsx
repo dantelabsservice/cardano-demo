@@ -45,7 +45,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   }, [value]);
 
   return (
-    <FormControl my={formInputStyle.controlMarginY}>
+    <FormControl my={formInputStyle.controlMarginY} isInvalid={Boolean(error)}>
       {label && <FormLabel color={mainColor}>{label}</FormLabel>}
       <ChakraNumberInput defaultValue={text} min={min} max={max}>
         <NumberInputField

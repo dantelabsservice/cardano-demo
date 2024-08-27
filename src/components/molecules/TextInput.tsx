@@ -46,13 +46,13 @@ export const TextInput: React.FC<TextInputProps> = ({
   }, [value]);
 
   return (
-    <FormControl my={formInputStyle.controlMarginY}>
+    <FormControl my={formInputStyle.controlMarginY} isInvalid={Boolean(error)}>
       {label && <FormLabel color={mainColor}>{label}</FormLabel>}
       <Box>
         <Flex
           alignItems="center"
           border={formInputStyle.border}
-          borderColor={mainColor}
+          borderColor={formInputStyle.mainColor}
           borderRadius={formInputStyle.borderRadius}
           px={formInputStyle.px}
         >

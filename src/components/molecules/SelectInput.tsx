@@ -24,13 +24,13 @@ export const SelectInput: React.FC<SelectInputProps> = ({
   const mainColor = Boolean(error) ? "error" : formInputStyle.mainColor;
 
   return (
-    <FormControl my={formInputStyle.controlMarginY}>
+    <FormControl my={formInputStyle.controlMarginY} isInvalid={Boolean(error)}>
       {label && <FormLabel color={mainColor}>{label}</FormLabel>}
       <Select
         placeholder="Select option"
         {...props}
         borderRadius={formInputStyle.borderRadius}
-        borderColor={mainColor}
+        borderColor={formInputStyle.mainColor}
         _hover={{ borderColor: mainColor }}
       >
         {options.map((option) => (
