@@ -12,7 +12,7 @@ export const ListResultSubitem: React.FC<ListResultSubitemProps> = ({
   accessedByLifts,
 }) => {
   return (
-    <Grid templateColumns="repeat(2, 1fr)" w="100%" gap={4}>
+    <Grid templateColumns={{md: "repeat(2, 1fr)"}} w="100%" gap={4}>
       {accessedByLifts.map((lift: any) => (
         <GridItem key={lift.id} mt={2}>
           <Flex flexDir="column" gap={rem(1)}>

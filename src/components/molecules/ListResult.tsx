@@ -9,7 +9,7 @@ export const ListResult = ({ trails }: { trails: TrailType[] }) => {
   return (
     <Grid
       as="section"
-      templateColumns="repeat(2, 1fr)"
+      templateColumns={{base: "repeat(1, 1fr)", md: "repeat(2, 1fr)"}}
       gap="md"
       mt="2xl"
       role="list"

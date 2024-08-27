@@ -5,7 +5,7 @@ export const FORM_INPUT_STYLE = {
   mainColor: "primary",
   px: "md",
   py: "sm",
-  controlMarginY: "lg",
+  controlMarginY: {base: "sm", md: "lg"},
   border: `${rem(1)} solid`,
 };
 
