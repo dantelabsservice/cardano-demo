@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import { Box, Text, Spinner } from "@chakra-ui/react";
+import { Box, Text, Spinner, Grid, GridItem } from "@chakra-ui/react";
+import { ListResultItem } from "../molecules";
 
 const GET_TRAILS = gql`
   query GetTrails {
@@ -69,25 +70,14 @@ export const SearchResult: React.FC<SearchResultProps> = ({
   if (error) return <Text>Error: {error.message}</Text>;
 
   return (
-    <Box>
+    <Grid as="section" templateColumns="repeat(2, 1fr)" gap={4} mt="2xl" role="list">
       {data.allTrails.length > 0 ? (
         data.allTrails.map((trail: any) => (
-          <Box key={trail.id} mb={4} p={4} borderWidth="1px" borderRadius="md">
-            <Text fontWeight="bold">{trail.name}</Text>
-            <Text>Difficulty: {trail.difficulty}</Text>
-            <Text>Groomed: {trail.groomed ? "Yes" : "No"}</Text>
-            {trail.accessedByLifts.map((lift: any) => (
-              <Box key={lift.id} mt={2}>
-                <Text>Lift: {lift.name}</Text>
-                <Text>Capacity: {lift.capacity}</Text>
-                <Text>Elevation Gain: {lift.elevationGain}</Text>
-              </Box>
-            ))}
-          </Box>
+          <ListResultItem key={trail.id} {...trail} />
         ))
       ) : (
         <Text>No results found for the selected filters.</Text>
       )}
-    </Box>
+    </Grid>
   );
 };
