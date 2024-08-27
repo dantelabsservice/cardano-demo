@@ -23,7 +23,7 @@ const themeColors = {
     400: "#ced4da",
   },
   success: "#28a745",
-  danger: "#dc3545",
+  error: "#dc3545",
   warning: "#ffc107",
   transparent: "transparent",
   current: "currentColor",
