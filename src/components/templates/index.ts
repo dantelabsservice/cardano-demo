@@ -2,4 +2,4 @@
  * Templates
  */
 
-export {}
+export * from './Header';
