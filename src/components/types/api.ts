@@ -12,3 +12,7 @@ export type TrailType = {
   groomed: boolean;
   accessedByLifts: LiftType[];
 };
+
+export type AllTrailsQueryResultType = {
+  allTrails: TrailType[];
+};

@@ -28,7 +28,7 @@ export const ResultItemInfo: React.FC<ResultItemInfoProps> = ({
       <Text as="span" fontWeight="bold">
         {label}:
       </Text>
-      <Text as="span">{value}</Text>
+      <Text as="span">{value.toUpperCase()}</Text>
     </Flex>
   );
 };

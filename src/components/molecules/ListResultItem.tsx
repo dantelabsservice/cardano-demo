@@ -19,7 +19,8 @@ export const ListResultItem: React.FC<ListResultItemProps> = ({
       <Flex
         flexDir="column"
         alignItems="center"
-        p={4}
+        py="lg"
+        px="2xl"
         borderRadius="2xl"
         bgColor="blue.100"
       >

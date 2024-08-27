@@ -3,6 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import { Box, Text, Spinner, Grid, GridItem, Flex } from "@chakra-ui/react";
 import { ListResultItem } from "../molecules";
 import { SearchFilters } from "./SearchFilters";
+import { AllTrailsQueryResultType, TrailType } from "../types/api";
 
 const GET_TRAILS = gql`
   query GetTrails {
@@ -54,18 +55,22 @@ interface SearchResultProps {
   elevationGain: number;
 }
 
-const Loading = () => (
-  <Flex justify="center" align="center" h="30%" w="100%">
-    <Spinner size="xl" />
-  </Flex>
-);
+const Loading = ({ isLoading = false }: { isLoading: boolean }) => {
+  if (!isLoading) return null;
+
+  return (
+    <Flex justify="center" align="center" h="30%" w="100%">
+      <Spinner size="xl" />
+    </Flex>
+  );
+};
 
 export const SearchResult: React.FC<SearchResultProps> = ({
   difficulty,
   isGroomed,
   elevationGain,
 }) => {
-  const { loading, error, data } = useQuery(GET_TRAILS, {
+  const { loading, error, data } = useQuery<AllTrailsQueryResultType>(GET_TRAILS, {
     variables: {
       difficulty: difficulty || undefined,
       groomed: isGroomed || undefined,
@@ -77,14 +82,14 @@ export const SearchResult: React.FC<SearchResultProps> = ({
     <>
       <SearchFilters />
 
-      {loading && <Loading />}
+      <Loading isLoading={loading} />
       {Boolean(error) && <Text>Error: {error?.message}</Text>}
 
-      {data?.allTrails?.length > 0 ? (
+      {data?.allTrails?.length ? (
         <Grid
           as="section"
           templateColumns="repeat(2, 1fr)"
-          gap={4}
+          gap="md"
           mt="2xl"
           role="list"
         >
