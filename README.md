@@ -1,40 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ski Trip Manager
 
-## Getting Started
+This documentation provides instructions on how to set up, run, and deploy the Ski Trip Manager application.
 
-First, run the development server:
+## Prerequisites
+
+Before proceeding with the setup, ensure that you have the following prerequisites installed:
+
+- Node.js (version 18 or higher)
+- Yarn (package manager)
+
+## Setup
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/your-username/ski-trip-manager.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd ski-trip-manager
+    ```
+
+3. Ensure you're using the correct version of Node:
+
+    ```bash
+    nvm use
+    ```
+    
+4. Install the dependencies:
+
+    ```bash
+    yarn install
+    ```
+
+5. Configure the application:
+
+    - Rename the `.env.example` file to `.env`.
+    - Open the `.env` file and update the necessary configuration variables, such as database connection details and API keys.
+
+5. Set up the database:
+
+    - Create a new database for the application.
+    - Update the `NEXT_PUBLIC_GRAPHQL_URL` variable in the `.env` file with the appropriate database connection string.
+
+## Running the Application
+
+To start the application, run the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be accessible at `http://localhost:3000`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+To deploy the application to a production environment, follow these steps:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Build the application:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    ```bash
+    yarn build
+    ```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. The repo is connected to Vercel and automatically deploys the latest version on `main` branch.
