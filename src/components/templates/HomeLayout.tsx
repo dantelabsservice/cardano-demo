@@ -7,9 +7,11 @@ const BG_IMAGE = "url('images/snowy-mountains.png')";
 
 export const PageMain: React.FC<BaseLayoutProps> = ({ children }) => (
   <Flex
+    position="relative"
     flexDir="column"
     as="main"
-    h="100%"
+    flex="1"
+    h={0}
     px="lg"
     py="md"
     bgBlendMode="overlay"

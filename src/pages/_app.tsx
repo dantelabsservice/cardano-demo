@@ -8,6 +8,8 @@ import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { HomeLayout } from "@/components/templates";
 import { PageLayout } from "@/components/templates/PageLayout";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "@/apollo/client";
 
 const Loading = () => (
   <Flex
@@ -58,12 +60,14 @@ const MyApp = ({ Component: Page, pageProps }: AppProps) => {
         {...pageProps.seo}
       />
 
-      <ChakraProvider theme={theme} resetCSS>
-        <Layout pageProps={pageProps}>
-          {isLoading && <Loading />}
-          <Page {...pageProps} />
-        </Layout>
-      </ChakraProvider>
+      <ApolloProvider client={client}>
+        <ChakraProvider theme={theme} resetCSS>
+          <Layout pageProps={pageProps}>
+            {isLoading && <Loading />}
+            <Page {...pageProps} />
+          </Layout>
+        </ChakraProvider>
+      </ApolloProvider>
     </>
   );
 };

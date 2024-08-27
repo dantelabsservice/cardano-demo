@@ -15,5 +15,6 @@ export const globalStyle: CSSObject = {
   },
   '*': {
     boxSizing: 'border-box',
+    scrollbarColor: '#555 transparent',
   },
 };
