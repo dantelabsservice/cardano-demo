@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Flex, Heading } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
-import { Link } from "react-router-dom";
 
 type NavigationButtonProps = {
   to: string;
@@ -9,7 +9,7 @@ type NavigationButtonProps = {
 
 const NavigationButton: React.FC<NavigationButtonProps> = ({ to, children }) => (
   <Button colorScheme="whiteAlpha" variant="outline">
-    <Link to={to}>{children}</Link>
+    <Link href={to}>{children}</Link>
   </Button>
 );
 
