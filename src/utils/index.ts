@@ -2,4 +2,4 @@
  * @file index.ts
  */
 
-export {}
+export * from "./textToSlug"

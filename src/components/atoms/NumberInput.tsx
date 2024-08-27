@@ -16,6 +16,8 @@ interface NumberInputProps extends NumberInputFieldProps {
   label?: string;
   error?: string;
   value?: number;
+  min?: number;
+  max?: number;
 }
 
 export const NumberInput: React.FC<NumberInputProps> = ({
@@ -23,6 +25,8 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   error,
   value,
   onChange,
+  min,
+  max,
   ...props
 }) => {
   const [text, setText] = useState<number>(1);
@@ -43,12 +47,14 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   return (
     <FormControl my={formInputStyle.controlMarginY}>
       {label && <FormLabel color={mainColor}>{label}</FormLabel>}
-      <ChakraNumberInput defaultValue={text} min={1} max={1000}>
+      <ChakraNumberInput defaultValue={text} min={min} max={max}>
         <NumberInputField
+          {...props}
+          borderRadius={formInputStyle.borderRadius}
           borderColor={formInputStyle.mainColor}
           onChange={handleChange}
           value={text}
-          _hover={{ borderColor: formInputStyle.mainColor }}
+          _hover={{ borderColor: mainColor }}
         />
         <NumberInputStepper>
           <NumberIncrementStepper />
