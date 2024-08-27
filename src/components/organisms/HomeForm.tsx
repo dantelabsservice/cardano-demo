@@ -4,31 +4,24 @@ import { NumberInput, SelectInput } from "../molecules";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { DIFFICULTY_OPTIONS, FormFields } from "@/constants";
+import { DIFFICULTY_OPTIONS, SearchFilters } from "@/constants";
 import useFilterStore from "@/zustand/filter";
 
 type FormikValues = {
-  [FormFields.NumberOfPeople]: number;
-  [FormFields.SkillLevel]: string;
+  [SearchFilters.NumberOfPeople]: number;
+  [SearchFilters.Difficulty]: string;
 };
 
 const validationSchema = Yup.object({
-  [FormFields.NumberOfPeople]: Yup.number().required(
+  [SearchFilters.NumberOfPeople]: Yup.number().required(
     "Number of people is required"
   ),
-  [FormFields.SkillLevel]: Yup.string().required("Skill level is required"),
+  [SearchFilters.Difficulty]: Yup.string().required("Skill level is required"),
 });
 
 const HomeForm = () => {
   const router = useRouter();
-  const { setDifficulty } = useFilterStore();
-
-  const handleDifficultyChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setDifficulty(event.target.value);
-    handleChange(event);
-  };
+  const { setDifficulty, setNumberOfPeople } = useFilterStore();
 
   const {
     handleChange,
@@ -39,15 +32,23 @@ const HomeForm = () => {
     isSubmitting,
   } = useFormik<FormikValues>({
     initialValues: {
-      [FormFields.NumberOfPeople]: 1,
-      [FormFields.SkillLevel]: "",
+      [SearchFilters.NumberOfPeople]: 1,
+      [SearchFilters.Difficulty]: "",
     },
+    validateOnChange: false,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log(values);
+      setNumberOfPeople(values.numberOfPeople);
+      setDifficulty(values.difficulty);
       router.push("/results");
     },
   });
+
+  const handleChangeNumberOfPeople = (_: string, valueAsNumber: number) => {
+    handleChange({
+      target: { name: SearchFilters.NumberOfPeople, value: valueAsNumber },
+    });
+  }
 
   return (
     <>
@@ -56,20 +57,20 @@ const HomeForm = () => {
         gap={{ base: "none", md: "lg" }}
       >
         <NumberInput
-          name={FormFields.NumberOfPeople}
+          name={SearchFilters.NumberOfPeople}
           value={values.numberOfPeople}
-          onChange={handleChange}
+          onChange={handleChangeNumberOfPeople}
           label="Number of people"
           error={errors.numberOfPeople}
           min={1}
         />
         <SelectInput
-          name={FormFields.SkillLevel}
-          value={values.skillLevel}
-          onChange={handleDifficultyChange}
+          name={SearchFilters.Difficulty}
+          value={values.difficulty}
+          onChange={handleChange}
           label="Skill level"
           options={DIFFICULTY_OPTIONS}
-          error={errors.skillLevel}
+          error={errors.difficulty}
           placeholder="Select skill level"
         />
       </Flex>

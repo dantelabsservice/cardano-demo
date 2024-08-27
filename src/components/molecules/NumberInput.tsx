@@ -7,12 +7,12 @@ import {
   NumberIncrementStepper,
   NumberInput as ChakraNumberInput,
   NumberInputField,
-  NumberInputFieldProps,
+  NumberInputProps as ChakraNumberInputProps,
   NumberInputStepper,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
-interface NumberInputProps extends NumberInputFieldProps {
+interface NumberInputProps extends ChakraNumberInputProps {
   label?: string;
   error?: string;
   value?: number;
@@ -25,18 +25,14 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   error,
   value,
   onChange,
-  min,
-  max,
   ...props
 }) => {
   const [text, setText] = useState<number>(1);
   const mainColor = Boolean(error) ? "error" : FORM_INPUT_STYLE.mainColor;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (typeof event.target.value === "number") {
-      setText(event.target.value);
-      onChange && onChange(event);
-    }
+  const handleChange = (value: string, valueAsNumber: number) => {
+    setText(Number(valueAsNumber));
+    onChange && onChange(value, Number(value));
   };
 
   useEffect(() => {
@@ -45,15 +41,20 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   }, [value]);
 
   return (
-    <FormControl my={FORM_INPUT_STYLE.controlMarginY} isInvalid={Boolean(error)}>
+    <FormControl
+      my={FORM_INPUT_STYLE.controlMarginY}
+      isInvalid={Boolean(error)}
+    >
       {label && <FormLabel color={mainColor}>{label}</FormLabel>}
-      <ChakraNumberInput defaultValue={text} min={min} max={max}>
+      <ChakraNumberInput
+        defaultValue={text}
+        value={text}
+        onChange={handleChange}
+        {...props}
+      >
         <NumberInputField
-          {...props}
           borderRadius={FORM_INPUT_STYLE.borderRadius}
           borderColor={FORM_INPUT_STYLE.mainColor}
-          onChange={handleChange}
-          value={text}
           _hover={{ borderColor: mainColor }}
         />
         <NumberInputStepper>

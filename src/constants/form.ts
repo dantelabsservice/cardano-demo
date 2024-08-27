@@ -12,12 +12,8 @@ export const FORM_INPUT_STYLE = {
 export const DIFFICULTY_OPTIONS = ["Beginner", "Intermediate", "Advanced", "Expert"];
 export const GROOMED_OPTIONS = ["True", "False"];
 
-export enum FormFields {
-  NumberOfPeople = "numberOfPeople",
-  SkillLevel = "skillLevel",
-}
-
 export enum SearchFilters {
+  NumberOfPeople = "numberOfPeople",
   Difficulty = "difficulty",
   Groomed = "groomed",
   MaxElevationGain = "maxElevationGain",

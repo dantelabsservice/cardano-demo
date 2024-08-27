@@ -52,7 +52,8 @@ const GET_TRAILS = gql`
 // `;
 
 export const SearchResult: React.FC = () => {
-  const { difficulty, groomed, maxElevationGain } = useFilterStore();
+  const { difficulty, groomed, maxElevationGain, numberOfPeople } =
+    useFilterStore();
   const { loading, error, data } = useQuery<AllTrailsQueryResultType>(
     GET_TRAILS,
     {
@@ -66,6 +67,15 @@ export const SearchResult: React.FC = () => {
 
   const filteredTrails =
     data?.allTrails.filter((trail) => {
+      if (numberOfPeople) {
+        const hasValidLift = trail.accessedByLifts.some(
+          (lift) => lift.capacity >= numberOfPeople
+        );
+        if (!hasValidLift) {
+          return false;
+        }
+      }
+
       if (difficulty) {
         if (trail.difficulty !== difficulty.toLowerCase()) {
           return false;
