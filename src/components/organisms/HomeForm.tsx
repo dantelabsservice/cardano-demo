@@ -4,12 +4,8 @@ import { NumberInput, SelectInput } from "../molecules";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { DIFFICULTY_OPTIONS } from "@/constants";
-
-export enum FormFields {
-  NumberOfPeople = "numberOfPeople",
-  SkillLevel = "skillLevel",
-}
+import { DIFFICULTY_OPTIONS, FormFields } from "@/constants";
+import useFilterStore from "@/zustand/filter";
 
 type FormikValues = {
   [FormFields.NumberOfPeople]: number;
@@ -25,6 +21,14 @@ const validationSchema = Yup.object({
 
 const HomeForm = () => {
   const router = useRouter();
+  const { setDifficulty } = useFilterStore();
+
+  const handleDifficultyChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setDifficulty(event.target.value);
+    handleChange(event);
+  };
 
   const {
     handleChange,
@@ -62,7 +66,7 @@ const HomeForm = () => {
         <SelectInput
           name={FormFields.SkillLevel}
           value={values.skillLevel}
-          onChange={handleChange}
+          onChange={handleDifficultyChange}
           label="Skill level"
           options={DIFFICULTY_OPTIONS}
           error={errors.skillLevel}
