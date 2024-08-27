@@ -1,4 +1,3 @@
-import { AppProps } from "next/dist/shared/lib/router/router";
 import React from "react";
 
 import { useLoadingNavigation } from "@/hooks/useLoadingNavigation";
@@ -7,6 +6,8 @@ import { useRouter } from "next/router";
 import { theme } from "@/theme/theme";
 import { ChakraProvider, CircularProgress, Flex } from "@chakra-ui/react";
 import { DefaultSeo } from "next-seo";
+import { PageLayout } from "@/components/templates/PageLayout";
+import { AppProps } from "next/app";
 
 const Loading = () => (
   <Flex
@@ -28,9 +29,13 @@ const MyApp = ({ Component: Page, pageProps }: AppProps) => {
   const { isLoading } = useLoadingNavigation();
   const router = useRouter();
 
-  const Layout = pageProps.Layout || React.Fragment;
+  const Layout = PageLayout;
 
   const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_URL}${router.asPath}`;
+
+  React.useEffect(() => {
+    console.log({pageProps})
+  }, []);
 
   return (
     <>
@@ -58,8 +63,11 @@ const MyApp = ({ Component: Page, pageProps }: AppProps) => {
       />
 
       <ChakraProvider theme={theme} resetCSS>
-        <Layout pageProps={pageProps}>
+        <Layout>
           {isLoading && <Loading />}
+          {pageProps.seo?.title && (
+            <p>{pageProps.seo.title}</p>
+          )}
           <Page {...pageProps} />
         </Layout>
       </ChakraProvider>

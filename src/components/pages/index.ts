@@ -1,5 +1,0 @@
-/**
- * Pages
- */
-
-export * from "./HomePage"
