@@ -4,6 +4,7 @@ import { NumberInput, SelectInput } from "../molecules";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import { DIFFICULTY_OPTIONS } from "@/constants";
 
 export enum FormFields {
   NumberOfPeople = "numberOfPeople",
@@ -63,8 +64,9 @@ const HomeForm = () => {
           value={values.skillLevel}
           onChange={handleChange}
           label="Skill level"
-          options={["Beginner", "Intermediate", "Advanced"]}
+          options={DIFFICULTY_OPTIONS}
           error={errors.skillLevel}
+          placeholder="Select skill level"
         />
       </Flex>
       <Button

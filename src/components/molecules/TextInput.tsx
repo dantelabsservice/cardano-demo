@@ -1,4 +1,4 @@
-import { formInputStyle } from "@/constants";
+import { FORM_INPUT_STYLE } from "@/constants";
 import { CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -28,7 +28,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   ...props
 }) => {
   const [text, setText] = useState<string>("");
-  const mainColor = Boolean(error) ? "error" : formInputStyle.mainColor;
+  const mainColor = Boolean(error) ? "error" : FORM_INPUT_STYLE.mainColor;
   const hasValue = Boolean(text);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,15 +46,15 @@ export const TextInput: React.FC<TextInputProps> = ({
   }, [value]);
 
   return (
-    <FormControl my={formInputStyle.controlMarginY} isInvalid={Boolean(error)}>
+    <FormControl my={FORM_INPUT_STYLE.controlMarginY} isInvalid={Boolean(error)}>
       {label && <FormLabel color={mainColor}>{label}</FormLabel>}
       <Box>
         <Flex
           alignItems="center"
-          border={formInputStyle.border}
-          borderColor={formInputStyle.mainColor}
-          borderRadius={formInputStyle.borderRadius}
-          px={formInputStyle.px}
+          border={FORM_INPUT_STYLE.border}
+          borderColor={FORM_INPUT_STYLE.mainColor}
+          borderRadius={FORM_INPUT_STYLE.borderRadius}
+          px={FORM_INPUT_STYLE.px}
         >
           <Input
             {...props}

@@ -1,4 +1,4 @@
-import { formInputStyle } from "@/constants";
+import { FORM_INPUT_STYLE } from "@/constants";
 import {
   FormControl,
   FormErrorMessage,
@@ -30,7 +30,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   ...props
 }) => {
   const [text, setText] = useState<number>(1);
-  const mainColor = Boolean(error) ? "error" : formInputStyle.mainColor;
+  const mainColor = Boolean(error) ? "error" : FORM_INPUT_STYLE.mainColor;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (typeof event.target.value === "number") {
@@ -45,13 +45,13 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   }, [value]);
 
   return (
-    <FormControl my={formInputStyle.controlMarginY} isInvalid={Boolean(error)}>
+    <FormControl my={FORM_INPUT_STYLE.controlMarginY} isInvalid={Boolean(error)}>
       {label && <FormLabel color={mainColor}>{label}</FormLabel>}
       <ChakraNumberInput defaultValue={text} min={min} max={max}>
         <NumberInputField
           {...props}
-          borderRadius={formInputStyle.borderRadius}
-          borderColor={formInputStyle.mainColor}
+          borderRadius={FORM_INPUT_STYLE.borderRadius}
+          borderColor={FORM_INPUT_STYLE.mainColor}
           onChange={handleChange}
           value={text}
           _hover={{ borderColor: mainColor }}

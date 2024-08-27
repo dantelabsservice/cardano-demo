@@ -1,7 +1,8 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import { Box, Text, Spinner, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Text, Spinner, Grid, GridItem, Flex } from "@chakra-ui/react";
 import { ListResultItem } from "../molecules";
+import { SearchFilters } from "./SearchFilters";
 
 const GET_TRAILS = gql`
   query GetTrails {
@@ -53,6 +54,12 @@ interface SearchResultProps {
   elevationGain: number;
 }
 
+const Loading = () => (
+  <Flex justify="center" align="center" h="30%" w="100%">
+    <Spinner size="xl" />
+  </Flex>
+);
+
 export const SearchResult: React.FC<SearchResultProps> = ({
   difficulty,
   isGroomed,
@@ -66,18 +73,28 @@ export const SearchResult: React.FC<SearchResultProps> = ({
     },
   });
 
-  if (loading) return <Spinner />;
-  if (error) return <Text>Error: {error.message}</Text>;
-
   return (
-    <Grid as="section" templateColumns="repeat(2, 1fr)" gap={4} mt="2xl" role="list">
-      {data.allTrails.length > 0 ? (
-        data.allTrails.map((trail: any) => (
-          <ListResultItem key={trail.id} {...trail} />
-        ))
+    <>
+      <SearchFilters />
+
+      {loading && <Loading />}
+      {Boolean(error) && <Text>Error: {error?.message}</Text>}
+
+      {data?.allTrails?.length > 0 ? (
+        <Grid
+          as="section"
+          templateColumns="repeat(2, 1fr)"
+          gap={4}
+          mt="2xl"
+          role="list"
+        >
+          {data.allTrails.map((trail: any) => (
+            <ListResultItem key={trail.id} {...trail} />
+          ))}
+        </Grid>
       ) : (
-        <Text>No results found for the selected filters.</Text>
+        !loading && <Text>No results found for the selected filters.</Text>
       )}
-    </Grid>
+    </>
   );
 };
