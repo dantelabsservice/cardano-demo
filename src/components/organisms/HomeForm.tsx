@@ -29,7 +29,6 @@ const HomeForm = () => {
     isValidating,
     errors,
     isSubmitting,
-    submitCount,
   } = useFormik<FormikValues>({
     initialValues: {
       [FormFields.NumberOfPeople]: 1,
@@ -69,6 +68,7 @@ const HomeForm = () => {
         type="submit"
         width="100%"
         onClick={() => handleSubmit()}
+        isLoading={isValidating || isSubmitting}
       >
         Find activities
       </Button>
