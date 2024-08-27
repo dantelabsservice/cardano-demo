@@ -16,7 +16,7 @@ interface TextInputProps extends InputProps {
   label?: string;
   error?: string;
   clearable?: boolean;
-  value?: string | number;
+  value?: string;
 }
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -27,7 +27,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   onChange,
   ...props
 }) => {
-  const [text, setText] = useState<string | number>();
+  const [text, setText] = useState<string>("");
   const mainColor = Boolean(error) ? "error" : formInputStyle.mainColor;
   const hasValue = Boolean(text);
 
@@ -51,14 +51,14 @@ export const TextInput: React.FC<TextInputProps> = ({
       <Box>
         <Flex
           alignItems="center"
-          borderColor={mainColor}
           border={formInputStyle.border}
+          borderColor={mainColor}
           borderRadius={formInputStyle.borderRadius}
           px={formInputStyle.px}
         >
           <Input
-            type="text"
             {...props}
+            type="text"
             border="none"
             shadow="none"
             value={text}

@@ -1,4 +1,4 @@
-import { TextInput } from "@/components/atoms";
+import { NumberInput, TextInput } from "@/components/atoms";
 import { Text } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
 
@@ -12,6 +12,7 @@ const Page: NextPage<PageProps> = ({}) => {
         ski activities that suits best for your team.
       </Text>
       <TextInput label="Group size" />
+      <NumberInput label="Age" />
     </>
   );
 };
