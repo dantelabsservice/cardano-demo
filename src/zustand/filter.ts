@@ -15,7 +15,7 @@ type FilterState = {
 const useFilterStore = create<FilterState>((set) => ({
   difficulty: "",
   groomed: "False",
-  maxElevationGain: 0,
+  maxElevationGain: 2000,
   setDifficulty: (difficulty: string) => set({ difficulty }),
   setGroomed: (groomed: GroomedTypes) => set({ groomed }),
   setMaxElevationGain: (maxElevationGain: number) => set({ maxElevationGain }),

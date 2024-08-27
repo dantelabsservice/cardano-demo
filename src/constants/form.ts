@@ -9,7 +9,7 @@ export const FORM_INPUT_STYLE = {
   border: `${rem(1)} solid`,
 };
 
-export const DIFFICULTY_OPTIONS = ["Beginner", "Intermediate", "Advanced"];
+export const DIFFICULTY_OPTIONS = ["Beginner", "Intermediate", "Advanced", "Expert"];
 export const GROOMED_OPTIONS = ["True", "False"];
 
 export enum FormFields {

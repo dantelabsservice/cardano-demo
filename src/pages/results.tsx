@@ -7,8 +7,10 @@ type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 const Page: NextPage<PageProps> = ({}) => {
   return (
     <>
-      <Heading as="h1" variant="page-heading">Ski trail results</Heading>
-      <SearchResult difficulty="advanced" isGroomed={true} elevationGain={1480} />
+      <Heading as="h1" variant="page-heading">
+        Ski trail results
+      </Heading>
+      <SearchResult />
     </>
   );
 };

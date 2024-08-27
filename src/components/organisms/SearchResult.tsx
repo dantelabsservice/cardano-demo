@@ -1,9 +1,11 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import { Box, Text, Spinner, Grid, GridItem, Flex } from "@chakra-ui/react";
-import { ListResultItem } from "../molecules";
+import { Text } from "@chakra-ui/react";
 import { SearchFilters } from "./SearchFilters";
-import { AllTrailsQueryResultType, TrailType } from "../types/api";
+import { AllTrailsQueryResultType } from "../types/api";
+import useFilterStore from "@/zustand/filter";
+import { ListResult } from "../molecules/ListResult";
+import { Loading } from "../atoms/Loading";
 
 const GET_TRAILS = gql`
   query GetTrails {
@@ -49,34 +51,44 @@ const GET_TRAILS = gql`
 //   }
 // `;
 
-interface SearchResultProps {
-  difficulty: string;
-  isGroomed: boolean;
-  elevationGain: number;
-}
-
-const Loading = ({ isLoading = false }: { isLoading: boolean }) => {
-  if (!isLoading) return null;
-
-  return (
-    <Flex justify="center" align="center" h="30%" w="100%">
-      <Spinner size="xl" />
-    </Flex>
+export const SearchResult: React.FC = () => {
+  const { difficulty, groomed, maxElevationGain } = useFilterStore();
+  const { loading, error, data } = useQuery<AllTrailsQueryResultType>(
+    GET_TRAILS,
+    {
+      variables: {
+        difficulty: difficulty || undefined,
+        groomed: Boolean(groomed) || undefined,
+        maxElevationGain: maxElevationGain > 0 ? maxElevationGain : undefined,
+      },
+    }
   );
-};
 
-export const SearchResult: React.FC<SearchResultProps> = ({
-  difficulty,
-  isGroomed,
-  elevationGain,
-}) => {
-  const { loading, error, data } = useQuery<AllTrailsQueryResultType>(GET_TRAILS, {
-    variables: {
-      difficulty: difficulty || undefined,
-      groomed: isGroomed || undefined,
-      minElevationGain: elevationGain > 0 ? elevationGain : undefined,
-    },
-  });
+  const filteredTrails =
+    data?.allTrails.filter((trail) => {
+      if (difficulty) {
+        if (trail.difficulty !== difficulty.toLowerCase()) {
+          return false;
+        }
+      }
+
+      if (maxElevationGain) {
+        const hasValidLift = trail.accessedByLifts.some(
+          (lift) => lift.elevationGain <= maxElevationGain
+        );
+        if (!hasValidLift) {
+          return false;
+        }
+      }
+
+      if (groomed === "True") {
+        if (!trail.groomed) {
+          return false;
+        }
+      }
+
+      return true;
+    }) || [];
 
   return (
     <>
@@ -85,21 +97,7 @@ export const SearchResult: React.FC<SearchResultProps> = ({
       <Loading isLoading={loading} />
       {Boolean(error) && <Text>Error: {error?.message}</Text>}
 
-      {data?.allTrails?.length ? (
-        <Grid
-          as="section"
-          templateColumns="repeat(2, 1fr)"
-          gap="md"
-          mt="2xl"
-          role="list"
-        >
-          {data.allTrails.map((trail: any) => (
-            <ListResultItem key={trail.id} {...trail} />
-          ))}
-        </Grid>
-      ) : (
-        !loading && <Text>No results found for the selected filters.</Text>
-      )}
+      {data && <ListResult trails={filteredTrails} />}
     </>
   );
 };

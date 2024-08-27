@@ -6,10 +6,10 @@ type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 const Page: NextPage<PageProps> = () => {
   return (
     <>
-      <Heading as="h1" size="xl">
+      <Heading as="h1" size="xl" variant="page-heading">
         About Ski Trip Group Manager
       </Heading>
-      <Text fontSize="lg" my="2xl">
+      <Text fontSize="lg" my="2xl" textAlign="center">
         Welcome to the Ski Trip Group Manager, your go-to tool for organizing
         ski trails and ensuring each group in your ski trip has the perfect
         experience. Our platform is designed to help you match your groups with
