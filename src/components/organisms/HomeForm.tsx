@@ -29,8 +29,8 @@ const HomeForm = () => {
 
   const handleAddGroup = (groupName: string, numberOfPeople: number) => {
     setGroups([
+      { name: groupName, trailId: "", liftId: "", numberOfPeople: numberOfPeople },
       ...groups,
-      { name: groupName, trailId: "", numberOfPeople: numberOfPeople },
     ]);
   };
 

@@ -41,32 +41,34 @@ const DesktopSearchFilters = () => {
   };
 
   return (
-    <Flex
-      flexDir={{ base: "column", md: "row" }}
-      gap={{ base: rem(1), md: "md" }}
-      bgColor="white"
-    >
-      <SelectInput
-        label="Difficulty Level"
-        options={DIFFICULTY_OPTIONS}
-        value={difficulty}
-        onChange={handleDifficultyChange}
-      />
-      <SelectInput
-        label="Show only groomed trails"
-        options={GROOMED_OPTIONS}
-        defaultValue={"False"}
-        value={groomed}
-        onChange={handleGroomedChange}
-      />
-      <SelectInput
-        label="Maximum elevation gain"
-        options={["500", "1000", "1500", "2000"]}
-        defaultValue={"500"}
-        value={maxElevationGain}
-        onChange={handleMaxElevationGainChange}
-      />
-    </Flex>
+    <>
+      <Flex
+        flexDir={{ base: "column", md: "row" }}
+        gap={{ base: rem(1), md: "md" }}
+        bgColor="white"
+      >
+        <SelectInput
+          label="Difficulty Level"
+          options={DIFFICULTY_OPTIONS}
+          value={difficulty}
+          onChange={handleDifficultyChange}
+        />
+        <SelectInput
+          label="Show only groomed trails"
+          options={GROOMED_OPTIONS}
+          defaultValue={"False"}
+          value={groomed}
+          onChange={handleGroomedChange}
+        />
+        <SelectInput
+          label="Maximum elevation gain"
+          options={["500", "1000", "1500", "2000"]}
+          defaultValue={"500"}
+          value={maxElevationGain}
+          onChange={handleMaxElevationGainChange}
+        />
+      </Flex>
+    </>
   );
 };
 
@@ -91,7 +93,12 @@ const MobileSearchFilters = () => (
 export const SearchFilters = () => {
   return (
     <>
-      <Box display={{ base: "none", md: "unset" }} pos="sticky" top={rem(-24)}>
+      <Box
+        display={{ base: "none", md: "unset" }}
+        pos="sticky"
+        top={rem(-24)}
+        bgColor="white"
+      >
         <DesktopSearchFilters />
       </Box>
       <Box display={{ md: "none" }} pos="sticky" top={rem(-18)} mt="lg">

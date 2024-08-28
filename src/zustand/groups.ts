@@ -4,6 +4,7 @@ import create from "zustand";
 type GroupProps = {
   name: string;
   trailId: string;
+  liftId: string;
   [SearchFilters.NumberOfPeople]: number;
 };
 
