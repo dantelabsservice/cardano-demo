@@ -32,6 +32,7 @@ export enum SearchFilters {
 }
 
 export const TRAIL_PROPS_LABELS = {
+  groupName: "Group name",
   difficulty: "Difficulty level",
   groomed: "Groomed",
   capacity: "Capacity",
