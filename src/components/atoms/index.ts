@@ -1,3 +1,5 @@
 /**
  * Atoms
  */
+
+export * from "./ResultItemInfo";

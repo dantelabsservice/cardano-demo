@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# Ski Trip Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This documentation provides instructions on how to set up, run, and deploy the Ski Trip Manager application.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Before proceeding with the setup, ensure that you have the following prerequisites installed:
 
-### `npm start`
+- Node.js (version 18 or higher)
+- Yarn (package manager)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Setup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Clone the repository:
 
-### `npm test`
+    ```bash
+    git clone https://github.com/your-username/ski-trip-manager.git
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Navigate to the project directory:
 
-### `npm run build`
+    ```bash
+    cd ski-trip-manager
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Ensure you're using the correct version of Node:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    nvm use
+    ```
+    
+4. Install the dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    yarn install
+    ```
 
-### `npm run eject`
+5. Configure the application:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    - Rename the `.env.example` file to `.env`.
+    - Open the `.env` file and update the necessary configuration variables, such as database connection details and API keys.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. Set up the database:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    - Create a new database for the application.
+    - Update the `NEXT_PUBLIC_GRAPHQL_URL` variable in the `.env` file with the appropriate database connection string.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Running the Application
 
-## Learn More
+To start the application, run the following command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+yarn start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application will be accessible at `http://localhost:3000`.
+
+## Deployment
+
+To deploy the application to a production environment, follow these steps:
+
+1. Build the application:
+
+    ```bash
+    yarn build
+    ```
+
+2. The repo is connected to Vercel and automatically deploys the latest version on `main` branch.
