@@ -57,12 +57,4 @@ The application will be accessible at `http://localhost:3000`.
 
 ## Deployment
 
-To deploy the application to a production environment, follow these steps:
-
-1. Build the application:
-
-    ```bash
-    yarn build
-    ```
-
-2. The repo is connected to Vercel and automatically deploys the latest version on `main` branch.
+Merge a PR for `develop` into `main` branch to automatically generate a new deploy on Vercel.
