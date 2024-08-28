@@ -57,4 +57,15 @@ The application will be accessible at `http://localhost:3000`.
 
 ## Deployment
 
-Merge a PR for `develop` into `main` branch to automatically generate a new deploy on Vercel.
+The Ski Trip Manager application is deployed using Vercel. To deploy the application, follow these steps:
+
+1. Open a pull request from the `develop` branch to the `main` branch.
+
+3. Wait for the Vercel checks to complete. Vercel will automatically build and deploy the application for each pull request.
+
+4. If the checks pass and the application is working as expected, merge the pull request into the `main` branch.
+
+5. Vercel will then deploy the application to the production environment. Wait for the deployment to be finished.
+
+Once the deployment is complete, the Ski Trip Manager application will be accessible at [https://ski-trip-manager.vercel.app/](https://ski-trip-manager.vercel.app/).
+
