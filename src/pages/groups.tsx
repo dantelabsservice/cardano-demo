@@ -1,5 +1,5 @@
 import { GroupsList } from "@/components/organisms";
-import { noPrintElement } from "@/theme";
+import { printSchema } from "@/theme";
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
 
@@ -7,7 +7,16 @@ type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const Page: NextPage<PageProps> = ({}) => {
   const handlePrintPage = () => {
-    window.print();
+    const printContent = document.getElementById("content-page");
+    const printWindow = window.open("", "_blank");
+
+    const htmlSchema = printSchema(printContent);
+
+    printWindow?.document.write(htmlSchema);
+    printWindow?.document.close();
+    printWindow?.focus();
+    printWindow?.print();
+    printWindow?.close();
   };
 
   return (
@@ -16,7 +25,7 @@ const Page: NextPage<PageProps> = ({}) => {
         Ski groups
       </Heading>
 
-      <Flex w="100%" justifyContent="center" sx={noPrintElement}>
+      <Flex w="100%" justifyContent="center" className="no-print">
         <Button variant="primary" role="button" onClick={handlePrintPage}>
           Print page
         </Button>

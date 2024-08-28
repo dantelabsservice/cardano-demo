@@ -10,7 +10,12 @@ export const PageLayout: React.FC<BaseLayoutProps> = ({ children }) => {
       <Header />
       <PageMain>
         <Box
-          w={{ base: "100%", md: "container.md", lg: "container.lg", xl: "container.xl" }}
+          w={{
+            base: "100%",
+            md: "container.md",
+            lg: "container.lg",
+            xl: "container.xl",
+          }}
           h="100%"
           bgColor="background.internal"
           px="sm"
@@ -18,6 +23,7 @@ export const PageLayout: React.FC<BaseLayoutProps> = ({ children }) => {
           boxShadow="xl"
         >
           <Box
+            id="content-page"
             h="100%"
             w="100%"
             overflow="auto"

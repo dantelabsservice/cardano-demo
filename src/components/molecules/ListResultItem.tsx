@@ -30,10 +30,11 @@ export const ListResultItem: React.FC<ListResultItemProps> = ({
     if (onClick) {
       onClick(id);
     }
-  }
+  };
 
   return (
     <GridItem
+      className="list-result-item"
       key={id}
       role="listitem"
       onClick={handleOnClick}

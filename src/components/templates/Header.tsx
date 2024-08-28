@@ -1,4 +1,3 @@
-import { noPrintElement } from "@/theme";
 import {
   Button,
   ButtonGroup,
@@ -33,7 +32,6 @@ export const Header = () => {
       px="lg"
       py="sm"
       alignItems="center"
-      sx={noPrintElement}
     >
       <Link href="/">
         <Heading as="h1" size="md" color="white" lineHeight={1}>
