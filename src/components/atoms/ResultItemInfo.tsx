@@ -1,3 +1,4 @@
+import { capitalize } from "@/utils/capitalize";
 import { Flex, Text, Theme } from "@chakra-ui/react";
 import React from "react";
 
@@ -26,7 +27,7 @@ export const ResultItemInfo: React.FC<ResultItemInfoProps> = ({
       fontSize="xs"
     >
       <Text as="span" fontWeight="bold">
-        {label}:
+        {capitalize(label)}:
       </Text>
       <Text as="span">{value.toUpperCase()}</Text>
     </Flex>

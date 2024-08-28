@@ -1,4 +1,4 @@
-import { SearchFilters } from "@/constants";
+import { DifficultyLevels, SearchFilters } from "@/constants";
 import create from "zustand";
 
 export type GroomedTypes = "True" | "False";
@@ -9,7 +9,7 @@ type FilterState = {
   [SearchFilters.Groomed]: GroomedTypes;
   [SearchFilters.MaxElevationGain]: number;
   setNumberOfPeople: (numberOfPeople: number) => void;
-  setDifficulty: (category: string) => void;
+  setDifficulty: (category: DifficultyLevels) => void;
   setGroomed: (groomed: GroomedTypes) => void;
   setMaxElevationGain: (maxElevationGain: number) => void;
 };
@@ -20,7 +20,7 @@ const useFilterStore = create<FilterState>((set) => ({
   groomed: "False",
   maxElevationGain: 2000,
   setNumberOfPeople: (numberOfPeople: number) => set({ numberOfPeople }),
-  setDifficulty: (difficulty: string) => set({ difficulty }),
+  setDifficulty: (difficulty: DifficultyLevels) => set({ difficulty }),
   setGroomed: (groomed: GroomedTypes) => set({ groomed }),
   setMaxElevationGain: (maxElevationGain: number) => set({ maxElevationGain }),
 }));

@@ -14,7 +14,7 @@ export interface ListResultItemProps {
   name: string;
   itemProps: ItemProps;
   subList?: ListResultSubitemProps[];
-  onClick?: () => void;
+  onClick?: (value: string) => void;
 }
 
 export const ListResultItem: React.FC<ListResultItemProps> = ({
@@ -26,11 +26,17 @@ export const ListResultItem: React.FC<ListResultItemProps> = ({
 }) => {
   const restProps = mapObjectEntries(itemProps);
 
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick(id);
+    }
+  }
+
   return (
     <GridItem
       key={id}
       role="listitem"
-      onClick={onClick}
+      onClick={handleOnClick}
       _hover={{ cursor: "pointer" }}
       _active={{
         opacity: 0.8,

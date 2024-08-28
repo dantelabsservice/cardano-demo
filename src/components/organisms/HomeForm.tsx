@@ -4,14 +4,15 @@ import { NumberInput, SelectInput, TextInput } from "../molecules";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { DIFFICULTY_OPTIONS, SearchFilters } from "@/constants";
+import { DIFFICULTY_OPTIONS, DifficultyLevels, SearchFilters } from "@/constants";
 import useFilterStore from "@/zustand/filter";
 import useGroupsStore from "@/zustand/groups";
+import { useResetFilters } from "@/hooks/useResetFilters";
 
 type FormikValues = {
   groupName: string;
   [SearchFilters.NumberOfPeople]: number;
-  [SearchFilters.Difficulty]: string;
+  [SearchFilters.Difficulty]?: DifficultyLevels;
 };
 
 const validationSchema = Yup.object({
@@ -26,10 +27,16 @@ const HomeForm = () => {
   const router = useRouter();
   const { setDifficulty, setNumberOfPeople } = useFilterStore();
   const { groups, setGroups } = useGroupsStore();
+  const { resetFilters } = useResetFilters();
 
   const handleAddGroup = (groupName: string, numberOfPeople: number) => {
     setGroups([
-      { name: groupName, trailId: "", liftId: "", numberOfPeople: numberOfPeople },
+      {
+        name: groupName,
+        trailId: "",
+        liftId: "",
+        numberOfPeople: numberOfPeople,
+      },
       ...groups,
     ]);
   };
@@ -45,13 +52,14 @@ const HomeForm = () => {
     initialValues: {
       groupName: "",
       numberOfPeople: 1,
-      difficulty: "",
+      difficulty: undefined,
     },
     validateOnChange: false,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      resetFilters();
       setNumberOfPeople(values.numberOfPeople);
-      setDifficulty(values.difficulty);
+      setDifficulty(values.difficulty as DifficultyLevels);
       handleAddGroup(values.groupName, values.numberOfPeople);
 
       router.push("/results");

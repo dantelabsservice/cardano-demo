@@ -9,11 +9,18 @@ export const FORM_INPUT_STYLE = {
   border: `${rem(1)} solid`,
 };
 
+export enum DifficultyLevels {
+  Beginner = "Beginner",
+  Intermediate = "Intermediate",
+  Advanced = "Advanced",
+  Expert = "Expert",
+}
+
 export const DIFFICULTY_OPTIONS = [
-  "Beginner",
-  "Intermediate",
-  "Advanced",
-  "Expert",
+  DifficultyLevels.Beginner,
+  DifficultyLevels.Intermediate,
+  DifficultyLevels.Advanced,
+  DifficultyLevels.Expert,
 ];
 export const GROOMED_OPTIONS = ["True", "False"];
 
@@ -28,5 +35,6 @@ export const TRAIL_PROPS_LABELS = {
   difficulty: "Difficulty level",
   groomed: "Groomed",
   capacity: "Capacity",
-  maxElevationGain: "elevationGain",
+  maxElevationGain: "Elevation gain",
+  numberOfPeople: "Number of people",
 };

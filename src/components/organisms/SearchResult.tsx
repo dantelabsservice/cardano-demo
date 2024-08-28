@@ -10,15 +10,24 @@ import { GET_TRAILS } from "@/apollo/getTrailsQuery";
 import useGroupsStore from "@/zustand/groups";
 import { ListResultItemProps } from "../molecules";
 import { TRAIL_PROPS_LABELS } from "@/constants";
+import { useRouter } from "next/router";
 
 export const SearchResult: React.FC = () => {
+  const router = useRouter();
   const { difficulty, groomed, maxElevationGain, numberOfPeople } =
     useFilterStore();
-  const { groups } = useGroupsStore();
+  const { groups, setGroups } = useGroupsStore();
 
   const { loading, error, data } =
     useQuery<AllTrailsQueryResultType>(GET_TRAILS);
   const activeGroup = groups[0];
+
+  const handleOnClick = (id: string) => {
+    const group = groups[0];
+    setGroups([{ ...group, trailId: id }, ...groups.slice(1)]);
+
+    router.push("/groups");
+  };
 
   const filterLiftCapacity = (
     accessibleLifts: TrailType["accessedByLifts"]
@@ -80,13 +89,13 @@ export const SearchResult: React.FC = () => {
       itemProps: {
         [TRAIL_PROPS_LABELS.difficulty]: difficulty,
         [TRAIL_PROPS_LABELS.groomed]: groomed ? "Yes" : "No",
-        Lifts: accessedByLifts.length.toString(),
+        lift: accessedByLifts.length.toString(),
       },
       subList: accessedByLifts.map((lift) => ({
         id: lift.id,
-        Lift: lift.name,
-        Capacity: lift.capacity.toString(),
-        Elevation: lift.elevationGain.toString(),
+        lift: lift.name,
+        capacity: lift.capacity.toString(),
+        elevation: lift.elevationGain.toString(),
       })),
     };
   });
@@ -109,7 +118,7 @@ export const SearchResult: React.FC = () => {
       <Loading isLoading={loading} />
       {Boolean(error) && <Text>Error: {error?.message}</Text>}
 
-      {data && <ListResult list={mappedTrails} />}
+      {data && <ListResult list={mappedTrails} onClick={handleOnClick} />}
     </>
   );
 };

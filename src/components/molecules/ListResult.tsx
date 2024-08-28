@@ -1,14 +1,15 @@
 import { Grid, Text } from "@chakra-ui/react";
 import { ListResultItem, ListResultItemProps } from "./ListResultItem";
 
-interface ListResultProps {
+export interface ListResultProps {
   list: ListResultItemProps[],
+  emptyMessage?: string;
   onClick?: (value: string) => void;
 }
 
-export const ListResult: React.FC<ListResultProps> = ({ list }) => {
+export const ListResult: React.FC<ListResultProps> = ({ list, emptyMessage, onClick }) => {
   if (!list.length)
-    return <Text>No results found for the selected filters.</Text>;
+    return <Text>{emptyMessage || "No results found."}</Text>;
 
   return (
     <Grid
@@ -19,7 +20,7 @@ export const ListResult: React.FC<ListResultProps> = ({ list }) => {
       role="list"
     >
       {list.map((item) => (
-        <ListResultItem key={item.id} onClick={() => {}} {...item} />
+        <ListResultItem key={item.id} onClick={onClick} {...item} />
       ))}
     </Grid>
   );

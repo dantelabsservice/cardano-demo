@@ -1,3 +1,5 @@
+import { DifficultyLevels } from "@/constants";
+
 export type LiftType = {
   id: string;
   name: string;
@@ -8,7 +10,7 @@ export type LiftType = {
 export type TrailType = {
   id: string;
   name: string;
-  difficulty: string;
+  difficulty: DifficultyLevels;
   groomed: boolean;
   accessedByLifts: LiftType[];
 };
