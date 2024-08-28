@@ -9,14 +9,14 @@ const Page: NextPage<PageProps> = () => {
       <Heading as="h1" size="xl" variant="page-heading">
         About Ski Trip Group Manager
       </Heading>
-      <Text fontSize="lg" my="2xl" textAlign="center">
+      <Text fontSize="lg" textAlign="center">
         Welcome to the Ski Trip Group Manager, your go-to tool for organizing
         ski trails and ensuring each group in your ski trip has the perfect
         experience. Our platform is designed to help you match your groups with
         the most suitable ski trails based on their size and skill level.
       </Text>
 
-      <Box as="section" my="xl">
+      <Box as="section" my="3xl">
         <Heading as="h2" size="md" mb="lg">
           What You Can Do
         </Heading>
