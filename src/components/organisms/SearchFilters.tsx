@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { SelectInput } from "../molecules";
-import { DIFFICULTY_OPTIONS, GROOMED_OPTIONS } from "@/constants";
+import { DIFFICULTY_OPTIONS, DifficultyLevels, GROOMED_OPTIONS } from "@/constants";
 import { rem } from "polished";
 import useFilterStore, { GroomedTypes } from "@/zustand/filter";
 
@@ -27,7 +27,7 @@ const DesktopSearchFilters = () => {
   const handleDifficultyChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setDifficulty(event.target.value);
+    setDifficulty(event.target.value as DifficultyLevels);
   };
 
   const handleGroomedChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
