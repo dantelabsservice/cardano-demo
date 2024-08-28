@@ -16,7 +16,7 @@ export const SubitemList: React.FC<SubitemProps> = ({ list }) => {
   return (
     <Grid templateColumns={{ md: "repeat(2, 1fr)" }} w="100%" gap={4}>
       {list.map((item) => (
-        <GridItem key={item.id} mt={2}>
+        <GridItem key={item.id} mt={2} className="list-result-subitem">
           <Flex flexDir="column" gap={rem(1)}>
             {mapObjectEntries(item).map(({ key, value }) => (
               <ResultItemInfo key={key} label={key} value={String(value)} />

@@ -57,7 +57,9 @@ export const TextInput: React.FC<TextInputProps> = ({
   };
 
   const handleClickSuggestions = (suggestion: string) => {
-    setText(suggestion);
+    const mockEvent = { target: { value: suggestion, name: props.name } };
+
+    handleChange(mockEvent as React.ChangeEvent<HTMLInputElement>);
     setFilteredSuggestions([]);
   };
 
@@ -92,7 +94,7 @@ export const TextInput: React.FC<TextInputProps> = ({
             aria-label={label}
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "error-message" : undefined}
-            autoComplete={!!filteredSuggestions.length ? "off" : "on"}
+            autoComplete={!!suggestions?.length ? "off" : "on"}
           />
           {clearable && hasValue && (
             <CloseIcon

@@ -4,7 +4,12 @@ import { NumberInput, SelectInput, TextInput } from "../molecules";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { DIFFICULTY_OPTIONS, DifficultyLevels, SearchFilters } from "@/constants";
+import {
+  DIFFICULTY_OPTIONS,
+  DifficultyLevels,
+  SearchFilters,
+  TRAIL_PROPS_LABELS,
+} from "@/constants";
 import useFilterStore from "@/zustand/filter";
 import useGroupsStore from "@/zustand/groups";
 import { useResetFilters } from "@/hooks/useResetFilters";
@@ -30,15 +35,30 @@ const HomeForm = () => {
   const { resetFilters } = useResetFilters();
 
   const handleAddGroup = (groupName: string, numberOfPeople: number) => {
-    setGroups([
-      {
-        name: groupName,
-        trailId: "",
-        liftId: "",
-        numberOfPeople: numberOfPeople,
-      },
-      ...groups,
-    ]);
+    const existingGroup = groups.find((group) => group.name === groupName);
+
+    if (existingGroup) {
+      const newList = groups.filter((group) => group.name !== groupName);
+      setGroups([
+        {
+          name: existingGroup.name,
+          trailId: existingGroup.trailId,
+          liftId: existingGroup.liftId,
+          numberOfPeople: numberOfPeople,
+        },
+        ...newList,
+      ]);
+    } else {
+      setGroups([
+        {
+          name: groupName,
+          trailId: "",
+          liftId: "",
+          numberOfPeople: numberOfPeople,
+        },
+        ...groups,
+      ]);
+    }
   };
 
   const {
@@ -84,7 +104,7 @@ const HomeForm = () => {
             placeholder="Enter group name"
             value={values.groupName}
             onChange={handleChange}
-            label="Group name"
+            label={TRAIL_PROPS_LABELS.groupName}
             error={errors.groupName}
             suggestions={groups.map((group) => group.name)}
           />
@@ -94,7 +114,7 @@ const HomeForm = () => {
             name={SearchFilters.NumberOfPeople}
             value={values.numberOfPeople}
             onChange={handleChangeNumberOfPeople}
-            label="Number of people"
+            label={TRAIL_PROPS_LABELS.numberOfPeople}
             error={errors.numberOfPeople}
             min={1}
           />
@@ -104,7 +124,7 @@ const HomeForm = () => {
             name={SearchFilters.Difficulty}
             value={values.difficulty}
             onChange={handleChange}
-            label="Skill level"
+            label={TRAIL_PROPS_LABELS.difficulty}
             options={DIFFICULTY_OPTIONS}
             error={errors.difficulty}
             placeholder="Select skill level"
