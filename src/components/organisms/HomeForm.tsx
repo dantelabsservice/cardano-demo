@@ -32,8 +32,8 @@ const HomeForm = () => {
     isSubmitting,
   } = useFormik<FormikValues>({
     initialValues: {
-      [SearchFilters.NumberOfPeople]: 1,
-      [SearchFilters.Difficulty]: "",
+      numberOfPeople: 1,
+      difficulty: "",
     },
     validateOnChange: false,
     validationSchema: validationSchema,
@@ -48,7 +48,7 @@ const HomeForm = () => {
     handleChange({
       target: { name: SearchFilters.NumberOfPeople, value: valueAsNumber },
     });
-  }
+  };
 
   return (
     <>
