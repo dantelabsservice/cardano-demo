@@ -17,25 +17,19 @@ export const SearchResult: React.FC = () => {
   const filterLiftCapacity = (
     accessibleLifts: TrailType["accessedByLifts"]
   ) => {
-    if (!numberOfPeople) {
-      const hasCapatity = accessibleLifts.some(
-        (lift) => lift.capacity >= numberOfPeople
-      );
+    if (!numberOfPeople) return false;
 
-      if (!hasCapatity) return false;
-    }
+    return accessibleLifts.some((lift) => lift.capacity >= numberOfPeople);
   };
 
   const filterDifficulty = (trailDifficulty: TrailType["difficulty"]) => {
-    if (difficulty) {
-      if (trailDifficulty !== difficulty.toLowerCase()) {
-        return false;
-      }
-    }
+    if (!difficulty) return false;
+
+    return trailDifficulty === difficulty.toLowerCase();
   };
 
   const filterGroomed = (trailGroomed: TrailType["groomed"]) => {
-    if (groomed === "True") {
+    if (groomed == "True") {
       if (!trailGroomed) {
         return false;
       }
@@ -45,22 +39,28 @@ export const SearchResult: React.FC = () => {
   const filterMaxElevationGain = (
     trailElevationGain: TrailType["accessedByLifts"]
   ) => {
-    if (maxElevationGain) {
-      const hasValidLift = trailElevationGain.some(
-        (lift) => lift.elevationGain <= maxElevationGain
-      );
-      if (!hasValidLift) {
-        return false;
-      }
-    }
+    if (!maxElevationGain) return false;
+
+    return trailElevationGain.some(
+      (lift) => lift.elevationGain <= maxElevationGain
+    );
   };
 
   const filteredTrails =
     data?.allTrails.filter((trail) => {
-      filterLiftCapacity(trail.accessedByLifts);
-      filterDifficulty(trail.difficulty);
-      filterGroomed(trail.groomed);
-      filterMaxElevationGain(trail.accessedByLifts);
+      const hasCapacity = filterLiftCapacity(trail.accessedByLifts);
+      const hasDificultyLevel = filterDifficulty(trail.difficulty);
+      const hasMaxElevation = filterMaxElevationGain(trail.accessedByLifts);
+      const isGroomed = filterGroomed(trail.groomed);
+
+      if (
+        !hasCapacity ||
+        !hasDificultyLevel ||
+        !hasMaxElevation ||
+        isGroomed === false
+      ) {
+        return false;
+      }
 
       return true;
     }) || [];
