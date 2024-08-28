@@ -13,6 +13,7 @@ import {
 import useFilterStore from "@/zustand/filter";
 import useGroupsStore from "@/zustand/groups";
 import { useResetFilters } from "@/hooks/useResetFilters";
+import * as PageData from "@/data/home.json";
 
 type FormikValues = {
   groupName: string;
@@ -138,7 +139,7 @@ const HomeForm = () => {
         onClick={() => handleSubmit()}
         isLoading={isValidating || isSubmitting}
       >
-        Find activities
+        {PageData.trailsSearchForm.submitButtonText}
       </Button>
     </>
   );

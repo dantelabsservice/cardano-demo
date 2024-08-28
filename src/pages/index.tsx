@@ -1,16 +1,14 @@
 import HomeForm from "@/components/organisms/HomeForm";
 import { Text } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
+import * as PageData from "@/data/home.json";
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const Page: NextPage<PageProps> = ({}) => {
   return (
     <>
-      <Text>
-        Fill in the form with the information about your group to find the best
-        ski activities that suits best for your team.
-      </Text>
+      <Text>{PageData.trailsSearchForm.description}</Text>
       <HomeForm />
     </>
   );
@@ -20,10 +18,10 @@ export const getServerSideProps = async ({ req, res }: NextPageContext) => {
   return {
     props: {
       template: "home",
-      pageHeading: "Welcome to the Ski Trip Manager",
+      pageHeading: PageData.heading,
       seo: {
-        title: "Homepage",
-        description: "This is the homepage",
+        title: PageData.seo.title,
+        description: PageData.seo.description,
       },
     },
   };

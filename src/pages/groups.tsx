@@ -2,6 +2,7 @@ import { GroupsList } from "@/components/organisms";
 import { printSchema } from "@/theme";
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
+import * as PageData from "@/data/groups.json";
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -22,12 +23,12 @@ const Page: NextPage<PageProps> = ({}) => {
   return (
     <>
       <Heading as="h1" variant="page-heading">
-        Ski groups
+        {PageData.pageHeading}
       </Heading>
 
       <Flex w="100%" justifyContent="center" className="no-print">
         <Button variant="primary" role="button" onClick={handlePrintPage}>
-          Print page
+          {PageData.printButtonText}
         </Button>
       </Flex>
 
@@ -43,7 +44,8 @@ export const getServerSideProps = async ({ req, res }: NextPageContext) => {
     props: {
       template: "page",
       seo: {
-        title: "Ski trail results",
+        title: PageData.seo.title,
+        description: PageData.seo.description,
       },
     },
   };

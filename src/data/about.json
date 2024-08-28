@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "About",
+    "description": "Welcome to the Ski Trip Group Manager, your go-to tool for organizing ski trails and ensuring each group in your ski trip has the perfect experience."
+  },
   "heading": "About Ski Trip Group Manager",
   "description": "Welcome to the Ski Trip Group Manager, your go-to tool for organizing ski trails and ensuring each group in your ski trip has the perfect experience. Our platform is designed to help you match your groups with the most suitable ski trails based on their size and skill level.",
   "whatYouCanDo": {

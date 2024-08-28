@@ -2,8 +2,7 @@ import { Box, Flex, Heading } from "@chakra-ui/react";
 import React from "react";
 import { Header } from "./Header";
 import { BaseLayoutProps } from "../types/layout";
-
-const BG_IMAGE = "url('images/snowy-mountains.png')";
+import * as SiteData from "@/data/site.json";
 
 export const PageMain: React.FC<BaseLayoutProps> = ({ children }) => (
   <Flex
@@ -15,7 +14,7 @@ export const PageMain: React.FC<BaseLayoutProps> = ({ children }) => (
     px="lg"
     py="md"
     bgBlendMode="overlay"
-    bgImage={BG_IMAGE}
+    bgImage={`url(${SiteData.backgroundImage})`}
     backgroundColor="background.external"
     bgPosition="center"
     bgSize="cover"

@@ -1,0 +1,11 @@
+{
+  "seo": {
+    "title": "Homepage",
+    "description": "Ski Trip Manager is a web application that helps you to find the best ski activities for your group."
+  },
+  "heading": "Welcome to the Ski Trip Manager",
+  "trailsSearchForm": {
+    "description": "Fill in the form with the information about your group to find the best ski activities that suits best for your team.",
+    "submitButtonText": "Find activities"
+  }
+}

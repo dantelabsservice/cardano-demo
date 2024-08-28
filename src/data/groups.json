@@ -1,0 +1,15 @@
+{
+  "seo": {
+    "title": "Groups",
+    "description": "Manage your groups to organize your ski trips."
+  },
+  "pageHeading": "Ski groups",
+  "printButtonText": "Print page",
+  "noGroupsMessage": "You have no groups yet.",
+  "emptyListMessage": "You have no group selected yet.",
+  "alert": {
+    "message": "Would you like to edit this group?",
+    "edit": "Edit",
+    "delete": "Delete"
+  }
+}
