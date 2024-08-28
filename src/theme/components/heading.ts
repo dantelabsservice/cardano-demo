@@ -9,6 +9,7 @@ export const Heading: ComponentStyleConfig = {
       w: "100%",
       textAlign: "center",
       textTransform: "uppercase",
+      mb: "2xl",
     },
   },
   sizes: {

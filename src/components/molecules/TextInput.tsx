@@ -17,6 +17,7 @@ interface TextInputProps extends InputProps {
   error?: string;
   clearable?: boolean;
   value?: string;
+  suggestions?: string[];
 }
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -24,20 +25,40 @@ export const TextInput: React.FC<TextInputProps> = ({
   error,
   value,
   clearable = "true",
+  suggestions,
   onChange,
   ...props
 }) => {
   const [text, setText] = useState<string>("");
+  const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
   const mainColor = Boolean(error) ? "error" : FORM_INPUT_STYLE.mainColor;
   const hasValue = Boolean(text);
 
+  const handleFilterSuggestions = (value: string) => {
+    setFilteredSuggestions(
+      !!value.length
+        ? suggestions?.filter((suggestion) =>
+            suggestion.toLowerCase().includes(value.toLowerCase())
+          ) ?? []
+        : []
+    );
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
+    const { value } = event.target;
+
+    setText(value);
+    handleFilterSuggestions(value);
     onChange && onChange(event);
   };
 
   const onClear = () => {
     setText("");
+  };
+
+  const handleClickSuggestions = (suggestion: string) => {
+    setText(suggestion);
+    setFilteredSuggestions([]);
   };
 
   useEffect(() => {
@@ -46,9 +67,12 @@ export const TextInput: React.FC<TextInputProps> = ({
   }, [value]);
 
   return (
-    <FormControl my={FORM_INPUT_STYLE.controlMarginY} isInvalid={Boolean(error)}>
+    <FormControl
+      my={FORM_INPUT_STYLE.controlMarginY}
+      isInvalid={Boolean(error)}
+    >
       {label && <FormLabel color={mainColor}>{label}</FormLabel>}
-      <Box>
+      <Box position="relative">
         <Flex
           alignItems="center"
           border={FORM_INPUT_STYLE.border}
@@ -68,6 +92,7 @@ export const TextInput: React.FC<TextInputProps> = ({
             aria-label={label}
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "error-message" : undefined}
+            autoComplete={!!filteredSuggestions.length ? "off" : "on"}
           />
           {clearable && hasValue && (
             <CloseIcon
@@ -78,6 +103,35 @@ export const TextInput: React.FC<TextInputProps> = ({
             />
           )}
         </Flex>
+        {!!filteredSuggestions.length && (
+          <Box
+            as="ul"
+            position="absolute"
+            top="100%"
+            left={0}
+            right={0}
+            zIndex={10}
+            border={FORM_INPUT_STYLE.border}
+            borderColor={FORM_INPUT_STYLE.mainColor}
+            borderRadius={FORM_INPUT_STYLE.borderRadius}
+            bg="white"
+            boxShadow="md"
+          >
+            {filteredSuggestions.map((suggestion) => (
+              <Box
+                as="option"
+                key={suggestion}
+                p={FORM_INPUT_STYLE.py}
+                px={FORM_INPUT_STYLE.px}
+                _hover={{ bg: "primary" }}
+                _active={{ bg: "primary" }}
+                onClick={() => handleClickSuggestions(suggestion)}
+              >
+                {suggestion}
+              </Box>
+            ))}
+          </Box>
+        )}
       </Box>
       {error && <FormErrorMessage id="error-message">{error}</FormErrorMessage>}
     </FormControl>

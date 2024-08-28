@@ -1,18 +1,22 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import React from "react";
-import { NumberInput, SelectInput } from "../molecules";
+import { NumberInput, SelectInput, TextInput } from "../molecules";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { DIFFICULTY_OPTIONS, SearchFilters } from "@/constants";
+import { DIFFICULTY_OPTIONS, DifficultyLevels, SearchFilters } from "@/constants";
 import useFilterStore from "@/zustand/filter";
+import useGroupsStore from "@/zustand/groups";
+import { useResetFilters } from "@/hooks/useResetFilters";
 
 type FormikValues = {
+  groupName: string;
   [SearchFilters.NumberOfPeople]: number;
-  [SearchFilters.Difficulty]: string;
+  [SearchFilters.Difficulty]?: DifficultyLevels;
 };
 
 const validationSchema = Yup.object({
+  groupName: Yup.string().required("Group name is required"),
   [SearchFilters.NumberOfPeople]: Yup.number().required(
     "Number of people is required"
   ),
@@ -22,6 +26,20 @@ const validationSchema = Yup.object({
 const HomeForm = () => {
   const router = useRouter();
   const { setDifficulty, setNumberOfPeople } = useFilterStore();
+  const { groups, setGroups } = useGroupsStore();
+  const { resetFilters } = useResetFilters();
+
+  const handleAddGroup = (groupName: string, numberOfPeople: number) => {
+    setGroups([
+      {
+        name: groupName,
+        trailId: "",
+        liftId: "",
+        numberOfPeople: numberOfPeople,
+      },
+      ...groups,
+    ]);
+  };
 
   const {
     handleChange,
@@ -32,14 +50,18 @@ const HomeForm = () => {
     isSubmitting,
   } = useFormik<FormikValues>({
     initialValues: {
+      groupName: "",
       numberOfPeople: 1,
-      difficulty: "",
+      difficulty: undefined,
     },
     validateOnChange: false,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      resetFilters();
       setNumberOfPeople(values.numberOfPeople);
-      setDifficulty(values.difficulty);
+      setDifficulty(values.difficulty as DifficultyLevels);
+      handleAddGroup(values.groupName, values.numberOfPeople);
+
       router.push("/results");
     },
   });
@@ -56,23 +78,38 @@ const HomeForm = () => {
         flexDir={{ base: "column", md: "row" }}
         gap={{ base: "none", md: "lg" }}
       >
-        <NumberInput
-          name={SearchFilters.NumberOfPeople}
-          value={values.numberOfPeople}
-          onChange={handleChangeNumberOfPeople}
-          label="Number of people"
-          error={errors.numberOfPeople}
-          min={1}
-        />
-        <SelectInput
-          name={SearchFilters.Difficulty}
-          value={values.difficulty}
-          onChange={handleChange}
-          label="Skill level"
-          options={DIFFICULTY_OPTIONS}
-          error={errors.difficulty}
-          placeholder="Select skill level"
-        />
+        <Box flex={1}>
+          <TextInput
+            name="groupName"
+            placeholder="Enter group name"
+            value={values.groupName}
+            onChange={handleChange}
+            label="Group name"
+            error={errors.groupName}
+            suggestions={groups.map((group) => group.name)}
+          />
+        </Box>
+        <Box flex={0.5}>
+          <NumberInput
+            name={SearchFilters.NumberOfPeople}
+            value={values.numberOfPeople}
+            onChange={handleChangeNumberOfPeople}
+            label="Number of people"
+            error={errors.numberOfPeople}
+            min={1}
+          />
+        </Box>
+        <Box flex={0.6}>
+          <SelectInput
+            name={SearchFilters.Difficulty}
+            value={values.difficulty}
+            onChange={handleChange}
+            label="Skill level"
+            options={DIFFICULTY_OPTIONS}
+            error={errors.difficulty}
+            placeholder="Select skill level"
+          />
+        </Box>
       </Flex>
       <Button
         variant="primary"

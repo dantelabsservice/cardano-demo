@@ -1,0 +1,62 @@
+{
+  "heading": "About Ski Trip Group Manager",
+  "description": "Welcome to the Ski Trip Group Manager, your go-to tool for organizing ski trails and ensuring each group in your ski trip has the perfect experience. Our platform is designed to help you match your groups with the most suitable ski trails based on their size and skill level.",
+  "whatYouCanDo": {
+    "heading": "What You Can Do",
+    "items": [
+      {
+        "title": "Organize Groups",
+        "description": "Easily input the size of each group, whether small or large."
+      },
+      {
+        "title": "Select Trail Difficulty",
+        "description": "Choose the ideal trail difficulty level to match the skills of each group."
+      },
+      {
+        "title": "View Trail Details",
+        "description": "Get a comprehensive overview of each available trail, including difficulty, grooming status, and lift information."
+      },
+      {
+        "title": "Filter and Match Trails",
+        "description": "Quickly find the most suitable trails by filtering based on difficulty, grooming status, and lift elevation gain."
+      },
+      {
+        "title": "Print group list",
+        "description": "Print the list of groups and the trails they are assigned to."
+      }
+    ]
+  },
+  "howToUse": {
+    "heading": "How to Use the Platform",
+    "steps": [
+      {
+        "title": "Step 1: Enter Group Size",
+        "description": "Start by entering the size of the group you’re planning to assign to a ski trail. Whether you have a small family or a large team, the platform can accommodate your needs."
+      },
+      {
+        "title": "Step 2: Choose Trail Difficulty",
+        "description": "Select the difficulty level that matches the skill level of the group. This ensures everyone has a safe and enjoyable experience."
+      },
+      {
+        "title": "Step 3: Explore Trail Details",
+        "description": "Browse through the detailed list of ski trails. Here, you’ll find important information like trail difficulty, whether the trail is groomed, and the number of lifts required to reach the summit."
+      },
+      {
+        "title": "Step 4: Apply Filters",
+        "description": "If you need to narrow down your options, use our filtering tools. You can filter trails by difficulty, grooming status, and the minimum lift elevation gain, helping you find the best match for each group."
+      },
+      {
+        "title": "Step 5: Match and Assign Trails",
+        "description": "Once you’ve found a suitable trail, assign the group to that trail. The platform will guide you through the process, ensuring that every group is matched with the perfect trail."
+      },
+      {
+        "title": "Step 6: Print the group list",
+        "description": "When everything is set, you can print the list of groups and the trails they are assigned to. Just go to \"Groups\" page and click on the \"Print\" button."
+      }
+    ]
+  },
+  "whyChoose": {
+    "heading": "Why Choose Ski Trip Group Manager?",
+    "description": "Our platform simplifies the process of organizing ski trips, ensuring that each group has an experience tailored to their needs. With an easy-to-use interface and powerful filtering options, you can confidently plan a ski trip that everyone will enjoy."
+  }
+}

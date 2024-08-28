@@ -1,26 +1,54 @@
 import { Flex, GridItem, Heading } from "@chakra-ui/react";
 import React from "react";
-import { TrailType } from "../types/api";
-import { ListResultSubitem } from "./ListResultSubitem";
+import { SubitemList, ListResultSubitemProps } from "./ListResultSubitem";
 import { ResultItemInfo } from "../atoms";
 import { rem } from "polished";
+import { mapObjectEntries } from "@/utils/mapObjectEntries";
 
-interface ListResultItemProps extends TrailType {}
+interface ItemProps {
+  [key: string]: string;
+}
+
+export interface ListResultItemProps {
+  id: string;
+  name: string;
+  itemProps: ItemProps;
+  subList?: ListResultSubitemProps[];
+  onClick?: (value: string) => void;
+}
 
 export const ListResultItem: React.FC<ListResultItemProps> = ({
   id,
-  difficulty,
-  groomed,
   name,
-  accessedByLifts,
+  itemProps,
+  subList,
+  onClick,
 }) => {
+  const restProps = mapObjectEntries(itemProps);
+
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick(id);
+    }
+  }
+
   return (
-    <GridItem key={id} role="listitem">
+    <GridItem
+      key={id}
+      role="listitem"
+      onClick={handleOnClick}
+      _hover={{ cursor: "pointer" }}
+      _active={{
+        opacity: 0.8,
+        transform: "scale(0.98)",
+        transition: "all 0.2s",
+      }}
+    >
       <Flex
         flexDir="column"
         alignItems="center"
         py={{ base: "md", md: "md", lg: "lg" }}
-        px={{ base: "sm", md: "md", lg: "2xl"  }}
+        px={{ base: "sm", md: "md", lg: "2xl" }}
         borderRadius="2xl"
         bgColor="blue.100"
       >
@@ -35,20 +63,18 @@ export const ListResultItem: React.FC<ListResultItemProps> = ({
           gap={rem(1)}
           mt="sm"
         >
-          <ResultItemInfo
-            label="Difficulty"
-            value={difficulty}
-            bgColor="blue.300"
-            color="white"
-          />
-          <ResultItemInfo
-            label="Groomed"
-            value={groomed ? "Yes" : "No"}
-            bgColor="blue.300"
-            color="white"
-          />
+          {restProps.map(({ key, value }) => (
+            <ResultItemInfo
+              key={key}
+              label={key}
+              value={value}
+              bgColor="blue.300"
+              color="white"
+            />
+          ))}
         </Flex>
-        <ListResultSubitem accessedByLifts={accessedByLifts} />
+
+        {subList && <SubitemList list={subList} />}
       </Flex>
     </GridItem>
   );

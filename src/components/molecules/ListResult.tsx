@@ -1,10 +1,15 @@
 import { Grid, Text } from "@chakra-ui/react";
-import { TrailType } from "../types/api";
-import { ListResultItem } from "./ListResultItem";
+import { ListResultItem, ListResultItemProps } from "./ListResultItem";
 
-export const ListResult = ({ trails }: { trails: TrailType[] }) => {
-  if (!trails.length)
-    return <Text>No results found for the selected filters.</Text>;
+export interface ListResultProps {
+  list: ListResultItemProps[],
+  emptyMessage?: string;
+  onClick?: (value: string) => void;
+}
+
+export const ListResult: React.FC<ListResultProps> = ({ list, emptyMessage, onClick }) => {
+  if (!list.length)
+    return <Text>{emptyMessage || "No results found."}</Text>;
 
   return (
     <Grid
@@ -14,8 +19,8 @@ export const ListResult = ({ trails }: { trails: TrailType[] }) => {
       mt="2xl"
       role="list"
     >
-      {trails.map((trail) => (
-        <ListResultItem key={trail.id} {...trail} />
+      {list.map((item) => (
+        <ListResultItem key={item.id} onClick={onClick} {...item} />
       ))}
     </Grid>
   );
