@@ -35,7 +35,6 @@ export const printSchema = (printContent: HTMLElement | null) => `
           padding: 20px;
           width: 100%;
           max-width: 800px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .list-result-item {
           margin-top: 30px;
@@ -44,7 +43,7 @@ export const printSchema = (printContent: HTMLElement | null) => `
           border-radius: 8px;
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
           background-color: #f9f9f9;
-          width: 90%;
+          width: 400px;
         }
         .list-result-subitem {
           margin-top: 15px;

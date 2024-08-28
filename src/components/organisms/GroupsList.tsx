@@ -1,20 +1,22 @@
 import useGroupsStore from "@/zustand/groups";
-import { Box, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ListResult } from "../molecules/ListResult";
 import {
   DIFFICULTY_OPTIONS,
   DifficultyLevels,
+  PageRoutes,
   TRAIL_PROPS_LABELS,
 } from "@/constants";
 import { useQuery } from "@apollo/client";
 import { GET_TRAILS } from "@/apollo/getTrailsQuery";
 import { AllTrailsQueryResultType } from "../types/api";
 import { Alert, ListResultItemProps } from "../molecules";
-import { Loading } from "../atoms/Loading";
+import { Loading } from "../atoms";
 import { useRouter } from "next/router";
 import { useResetFilters } from "@/hooks/useResetFilters";
 import useFilterStore from "@/zustand/filter";
+import * as PageData from "@/data/groups.json";
 
 export const GroupsList = () => {
   const router = useRouter();
@@ -90,14 +92,14 @@ export const GroupsList = () => {
       setDifficulty(difficultyLevel as DifficultyLevels);
       resetFilters();
 
-      router.push("/results");
+      router.push(PageRoutes.Results);
     }
   };
 
   if (!groups.length) {
     return (
       <Text as="span" fontSize="large">
-        You still have no group defined.
+        {PageData.noGroupsMessage}
       </Text>
     );
   }
@@ -105,15 +107,19 @@ export const GroupsList = () => {
   return (
     <>
       <Loading isLoading={loading} />
-      <ListResult list={mappedGroups} onClick={handleOnClick} />
+      <ListResult
+        list={mappedGroups}
+        onClick={handleOnClick}
+        emptyMessage={PageData.emptyListMessage}
+      />
       <Alert
         isOpen={Boolean(selectedGroup)}
         onClose={handleCloseDialog}
         title={selectedGroup?.name}
-        message="Would you like to edit this group?"
-        leftButton={{ label: "Edit", onClick: handleEditGroup }}
+        message={PageData.alert.message}
+        leftButton={{ label: PageData.alert.edit, onClick: handleEditGroup }}
         rightButton={{
-          label: "Delete",
+          label: PageData.alert.delete,
           onClick: handleDeleteGroup,
           color: "red",
         }}

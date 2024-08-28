@@ -5,12 +5,13 @@ import { SearchFilters } from "./SearchFilters";
 import { AllTrailsQueryResultType, TrailType } from "../types/api";
 import useFilterStore from "@/zustand/filter";
 import { ListResult } from "../molecules/ListResult";
-import { Loading } from "../atoms/Loading";
+import { Loading } from "../atoms";
 import { GET_TRAILS } from "@/apollo/getTrailsQuery";
 import useGroupsStore from "@/zustand/groups";
 import { ListResultItemProps } from "../molecules";
-import { TRAIL_PROPS_LABELS } from "@/constants";
+import { PageRoutes, TRAIL_PROPS_LABELS } from "@/constants";
 import { useRouter } from "next/router";
+import * as PageData from "@/data/results.json";
 
 export const SearchResult: React.FC = () => {
   const router = useRouter();
@@ -23,10 +24,9 @@ export const SearchResult: React.FC = () => {
   const activeGroup = groups[0];
 
   const handleOnClick = (id: string) => {
-    const group = groups[0];
-    setGroups([{ ...group, trailId: id }, ...groups.slice(1)]);
+    setGroups([{ ...activeGroup, trailId: id }, ...groups.slice(1)]);
 
-    router.push("/groups");
+    router.push(PageRoutes.Groups);
   };
 
   const filterLiftCapacity = (
@@ -118,7 +118,13 @@ export const SearchResult: React.FC = () => {
       <Loading isLoading={loading} />
       {Boolean(error) && <Text>Error: {error?.message}</Text>}
 
-      {data && <ListResult list={mappedTrails} onClick={handleOnClick} />}
+      {data && (
+        <ListResult
+          list={mappedTrails}
+          onClick={handleOnClick}
+          emptyMessage={PageData.noResultsMessage}
+        />
+      )}
     </>
   );
 };

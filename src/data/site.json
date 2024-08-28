@@ -1,0 +1,10 @@
+{
+  "seo": {
+    "title": "Ski Manager Tool",
+    "description": "Manage your ski trips."
+  },
+  "backgroundImage": "images/snowy-mountains.png",
+  "header": {
+    "title": "Ski Trip Manager"
+  }
+}

@@ -10,6 +10,7 @@ import { HomeLayout } from "@/components/templates";
 import { PageLayout } from "@/components/templates/PageLayout";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "@/apollo/client";
+import * as SiteData from "@/data/site.json";
 
 const Loading = () => (
   <Flex
@@ -44,12 +45,12 @@ const MyApp = ({ Component: Page, pageProps }: AppProps) => {
         />
       </Head>
       <DefaultSeo
-        titleTemplate={`%s | Ski Manager Tool`}
+        titleTemplate={`%s | ${SiteData.seo.title}`}
         openGraph={{
           type: "website",
           locale: "nl",
           url: "",
-          siteName: "Ski Manager Tool",
+          siteName: SiteData.seo.title,
         }}
         twitter={{
           handle: "@handle",
