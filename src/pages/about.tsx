@@ -39,6 +39,10 @@ const Page: NextPage<PageProps> = () => {
             suitable trails by filtering based on difficulty, grooming status,
             and lift elevation gain.
           </ListItem>
+          <ListItem>
+            <strong>Print group list:</strong> Print the list of groups and the
+            trails they are assigned to.
+          </ListItem>
         </List>
       </Box>
 
@@ -46,11 +50,14 @@ const Page: NextPage<PageProps> = () => {
         <Heading as="h2" size="md" mb="lg">
           How to Use the Platform
         </Heading>
-        <List as="ol" sx={{
-          "li": {
-            mt: "md",
-          },
-        }}>
+        <List
+          as="ol"
+          sx={{
+            li: {
+              mt: "md",
+            },
+          }}
+        >
           <ListItem>
             <strong>Step 1: Enter Group Size</strong>
           </ListItem>
@@ -94,6 +101,15 @@ const Page: NextPage<PageProps> = () => {
             Once you’ve found a suitable trail, assign the group to that trail.
             The platform will guide you through the process, ensuring that every
             group is matched with the perfect trail.
+          </Text>
+
+          <ListItem>
+            <strong>Step 5: Print the group list</strong>
+          </ListItem>
+          <Text>
+            When everything is set, you can print the list of groups and the
+            trails they are assigned to. Just go to "Groups" page and click on
+            the "Print" button.
           </Text>
         </List>
       </Box>

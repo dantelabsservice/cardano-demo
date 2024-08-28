@@ -1,15 +1,26 @@
-import { GroupsList, SearchResult } from "@/components/organisms";
-import { Flex, Heading } from "@chakra-ui/react";
+import { GroupsList } from "@/components/organisms";
+import { noPrintElement } from "@/theme";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const Page: NextPage<PageProps> = ({}) => {
+  const handlePrintPage = () => {
+    window.print();
+  };
+
   return (
     <>
       <Heading as="h1" variant="page-heading">
         Ski groups
       </Heading>
+
+      <Flex w="100%" justifyContent="center" sx={noPrintElement}>
+        <Button variant="primary" role="button" onClick={handlePrintPage}>
+          Print page
+        </Button>
+      </Flex>
 
       <Flex w="100%" justifyContent="center">
         <GroupsList />
