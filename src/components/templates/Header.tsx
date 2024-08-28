@@ -20,6 +20,7 @@ export const Header = () => {
       <ButtonGroup ml="auto">
         <NavigationButton to="/">Home</NavigationButton>
         <NavigationButton to="/about">About</NavigationButton>
+        <NavigationButton to="/groups">Groups</NavigationButton>
       </ButtonGroup>
     </Flex>
   );
