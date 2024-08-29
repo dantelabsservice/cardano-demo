@@ -14,6 +14,7 @@ import useFilterStore from "@/zustand/filter";
 import useGroupsStore from "@/zustand/groups";
 import { useResetFilters } from "@/hooks/useResetFilters";
 import * as PageData from "@/data/home.json";
+import { textToSlug } from "@/utils";
 
 type FormikValues = {
   groupName: string;
@@ -38,11 +39,11 @@ const HomeForm = () => {
   const handleAddGroup = (groupName: string, numberOfPeople: number) => {
     const existingGroup = groups.find(
       (group) =>
-        group.name.toLowerCase().trim() === groupName.toLowerCase().trim()
+        textToSlug(group.name) === textToSlug(groupName)
     );
 
     if (existingGroup) {
-      const newList = groups.filter((group) => group.name !== groupName);
+      const newList = groups.filter((group) => textToSlug(group.name) !== textToSlug(groupName));
       setGroups([
         {
           name: existingGroup.name,
