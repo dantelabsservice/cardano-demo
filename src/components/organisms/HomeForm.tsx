@@ -36,7 +36,10 @@ const HomeForm = () => {
   const { resetFilters } = useResetFilters();
 
   const handleAddGroup = (groupName: string, numberOfPeople: number) => {
-    const existingGroup = groups.find((group) => group.name === groupName);
+    const existingGroup = groups.find(
+      (group) =>
+        group.name.toLowerCase().trim() === groupName.toLowerCase().trim()
+    );
 
     if (existingGroup) {
       const newList = groups.filter((group) => group.name !== groupName);
