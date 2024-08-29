@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { useResetFilters } from "@/hooks/useResetFilters";
 import useFilterStore from "@/zustand/filter";
 import * as PageData from "@/data/groups.json";
+import { textToSlug } from "@/utils";
 
 export const GroupsList = () => {
   const router = useRouter();
@@ -34,7 +35,7 @@ export const GroupsList = () => {
     const trail = data?.allTrails.find((trail) => trail.id === group.trailId);
 
     return {
-      id: group.name.trim(),
+      id: textToSlug(group.name),
       name: group.name,
       itemProps: {
         [TRAIL_PROPS_LABELS.numberOfPeople]: String(group.numberOfPeople),
@@ -42,7 +43,7 @@ export const GroupsList = () => {
         trail: String(trail?.name),
       },
       subList: trail?.accessedByLifts.map((lift) => ({
-        id: lift.name,
+        id: textToSlug(lift.name),
         lift: lift.name,
         capacity: String(lift.capacity),
         [TRAIL_PROPS_LABELS.maxElevationGain]: String(lift.elevationGain),
@@ -54,7 +55,7 @@ export const GroupsList = () => {
     const foundGroup = mappedGroups.find((group) => group.id === id);
     if (foundGroup) {
       setSelectedGroup({
-        id: foundGroup.id,
+        id: textToSlug(foundGroup.id),
         name: foundGroup.name,
         difficulty: foundGroup.itemProps[TRAIL_PROPS_LABELS.difficulty],
       });
