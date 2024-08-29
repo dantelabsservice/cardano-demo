@@ -7,6 +7,7 @@ export const textToSlug = (text: string) => {
   return text
     .toLowerCase()
     .trim()
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "");
+    .replace(/\s+/g, " ")
+    .replace(/[^\w-]+/g, "")
+    .replace(/ /g, "-");
 };
