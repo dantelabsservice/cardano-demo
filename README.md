@@ -42,8 +42,7 @@ Before proceeding with the setup, ensure that you have the following prerequisit
 
 5. Set up the database:
 
-    - Create a new database for the application.
-    - Update the `NEXT_PUBLIC_GRAPHQL_URL` variable in the `.env` file with the appropriate database connection string.
+    - Update the `NEXT_PUBLIC_GRAPHQL_URL` variable in the `.env` file with the appropriate API connection string.
 
 ## Running the Application
 
