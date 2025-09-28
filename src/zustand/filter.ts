@@ -1,5 +1,5 @@
 import { DifficultyLevels, SearchFilters } from "@/constants";
-import create from "zustand";
+import {create} from "zustand";
 
 export type GroomedTypes = "True" | "False";
 

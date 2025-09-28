@@ -1,11 +1,11 @@
 {
-  "name": "@ski-trip-manager/tool",
+  "name": "cardano-test",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,18 +14,25 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "axios": "^1.12.2",
+    "bitcoin-core": "^5.0.0",
+    "express-validator": "^7.2.1",
     "formik": "^2.4.6",
     "framer-motion": "^11.3.30",
     "graphql": "^16.9.0",
+    "joi": "^18.0.1",
+    "lucid-cardano": "^0.10.0",
     "next": "14.2.6",
     "next-seo": "^6.5.0",
     "polished": "^4.3.1",
     "react": "^18",
     "react-dom": "^18",
+    "room-populate": "^1.0.18",
     "yup": "^1.4.0",
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@types/express-validator": "^3.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

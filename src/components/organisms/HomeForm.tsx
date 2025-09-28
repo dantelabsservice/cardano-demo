@@ -13,7 +13,7 @@ import {
 import useFilterStore from "@/zustand/filter";
 import useGroupsStore from "@/zustand/groups";
 import { useResetFilters } from "@/hooks/useResetFilters";
-import * as PageData from "@/data/home.json";
+import PageData from "@/data/home.json";
 import { textToSlug } from "@/utils";
 
 type FormikValues = {

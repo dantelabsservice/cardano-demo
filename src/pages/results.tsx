@@ -1,7 +1,7 @@
 import { SearchResult } from "@/components/organisms";
 import { Heading } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
-import * as PageData from "@/data/results.json";
+import PageData from "@/data/results.json";
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 

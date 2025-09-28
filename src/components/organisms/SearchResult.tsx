@@ -11,7 +11,7 @@ import useGroupsStore from "@/zustand/groups";
 import { ListResultItemProps } from "../molecules";
 import { PageRoutes, TRAIL_PROPS_LABELS } from "@/constants";
 import { useRouter } from "next/router";
-import * as PageData from "@/data/results.json";
+import PageData from "@/data/results.json";
 
 export const SearchResult: React.FC = () => {
   const router = useRouter();

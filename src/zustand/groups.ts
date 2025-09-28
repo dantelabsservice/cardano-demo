@@ -1,5 +1,5 @@
 import { SearchFilters } from "@/constants";
-import create from "zustand";
+import {create} from "zustand";
 
 type GroupProps = {
   name: string;

@@ -1,6 +1,6 @@
 import { Box, Heading, List, ListItem, Text } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
-import * as PageData from "@/data/about.json";
+import PageData from "@/data/about.json";
 import React from "react";
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;

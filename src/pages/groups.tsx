@@ -2,7 +2,7 @@ import { GroupsList } from "@/components/organisms";
 import { printSchema } from "@/theme";
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import { InferGetServerSidePropsType, NextPage, NextPageContext } from "next";
-import * as PageData from "@/data/groups.json";
+import PageData from "@/data/groups.json";
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 

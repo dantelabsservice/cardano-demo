@@ -10,7 +10,7 @@ import { HomeLayout } from "@/components/templates";
 import { PageLayout } from "@/components/templates/PageLayout";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "@/apollo/client";
-import * as SiteData from "@/data/site.json";
+import SiteData from "@/data/site.json";
 
 const Loading = () => (
   <Flex

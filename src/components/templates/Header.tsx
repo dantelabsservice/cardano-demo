@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import * as SiteData from "@/data/site.json";
+import SiteData from "@/data/site.json";
 import { HEADER_MENU_ITEMS } from "@/constants";
 
 type NavigationButtonProps = ButtonProps & {

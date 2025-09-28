@@ -16,7 +16,7 @@ import { Loading } from "../atoms";
 import { useRouter } from "next/router";
 import { useResetFilters } from "@/hooks/useResetFilters";
 import useFilterStore from "@/zustand/filter";
-import * as PageData from "@/data/groups.json";
+import PageData from "@/data/groups.json";
 import { textToSlug } from "@/utils";
 
 export const GroupsList = () => {

@@ -2,7 +2,7 @@ import { Box, Flex, Heading } from "@chakra-ui/react";
 import React from "react";
 import { Header } from "./Header";
 import { BaseLayoutProps } from "../types/layout";
-import * as SiteData from "@/data/site.json";
+import SiteData from "@/data/site.json";
 
 export const PageMain: React.FC<BaseLayoutProps> = ({ children }) => (
   <Flex
