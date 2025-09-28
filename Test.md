@@ -81,7 +81,6 @@
 
 - **Frontend:** Your existing Next.js app.
 - **Cardano SDK:** [**Mesh JS SDK**](https://meshjs.dev/) is highly recommended for its excellent React/Next.js support and comprehensive tools.
-- **Backend (Optional but Recommended for some tasks):** You can add API routes inside your Next.js app (`/pages/api` or `/app/api` in the App Router) to handle secure operations like querying Blockfrost or building complex transactions.
 - **Blockchain Data:** [**Blockfrost**](https://blockfrost.io/) API (get a free project ID for the testnet) for easily querying blockchain data.
 - **Smart Contracts:** **Aiken** or **PlutusTx**. Mesh provides tools to work with both.
 - **Network:** **Cardano Preprod Testnet.**
